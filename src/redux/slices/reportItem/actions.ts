@@ -17,5 +17,4 @@ export const {
   fetchUpdateItemRequest,
   fetchUpdateItemRequestError,
   fetchUpdateItemRequestSuccess,
-  fetchReportItemsAction2
 } = reportItemSlice.actions;

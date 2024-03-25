@@ -60,7 +60,7 @@ export const schemaEmployee = yup.object().shape({
     .string()
     .email(FormPhrases.emailNotValid)
     .required(FormPhrases.required),
-  role: yup.string(),
+  role: yup.mixed(),
 });
 
 export const schemaReportItem = yup.object().shape({
@@ -69,6 +69,7 @@ export const schemaReportItem = yup.object().shape({
     .string()
     .min(10, "Минимальная длина 10 символов")
     .required(FormPhrases.required),
+  authorId: yup.string().required(FormPhrases.required),
   sum: yup
     .number()
     .typeError("Введите корректное число")

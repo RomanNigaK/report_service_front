@@ -38,6 +38,7 @@ export default function ReportItemForm({
       id: item?.id || "createdId",
       address: item?.address,
       sum: item?.sum,
+      authorId: item?.authorId,
     },
   });
 

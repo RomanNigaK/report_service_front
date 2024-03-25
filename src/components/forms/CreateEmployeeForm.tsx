@@ -15,6 +15,7 @@ import {
 import { nanoid } from "@reduxjs/toolkit";
 import RadioGroup from "@components/commons/RadioGroup";
 import { useState } from "react";
+import { Roles } from "constans/enums";
 
 type CreateEmployeeFormProps = {
   onClose: () => void;
@@ -40,7 +41,7 @@ export default function CreateEmployeeForm({
     },
   });
 
-  const [role, setRole] = useState<string | undefined>();
+  const [role, setRole] = useState<keyof typeof Roles | undefined>();
 
   const onSubmit: SubmitHandler<CreateEmployeeData> = (data) => {
     if (!role) {
@@ -54,7 +55,7 @@ export default function CreateEmployeeForm({
     onClose();
   };
 
-  const handleSetValueRadio = (role: string) => {
+  const handleSetValueRadio = (role: keyof typeof Roles) => {
     setRole(role);
     if (errors.role) clearErrors("role");
   };

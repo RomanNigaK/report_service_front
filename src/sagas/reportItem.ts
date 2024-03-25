@@ -9,7 +9,6 @@ import {
   fetchDeleteItemRequestError,
   fetchDeleteItemRequestSuccess,
   fetchReportItemsAction,
-  fetchReportItemsAction2,
   fetchReportItemsActionSeccess,
   fetchUpdateItemRequest,
   fetchUpdateItemRequestError,

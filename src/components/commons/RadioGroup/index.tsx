@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import "./radio.sass";
 import { useEffect, useState } from "react";
+import { Roles } from "constans/enums";
 
 interface IRadioButton {
   name: string;
@@ -12,7 +13,7 @@ interface IRadioGroup {
   label: string;
   error?: string;
   defaulValue?: string;
-  setValue: (val: string) => void;
+  setValue: (val: keyof typeof Roles) => void;
 }
 
 export default function RadioGroup({
@@ -22,7 +23,7 @@ export default function RadioGroup({
   setValue,
   defaulValue,
 }: IRadioGroup) {
-  const [val, setVal] = useState(defaulValue);
+  const [val, setVal] = useState<keyof typeof Roles | undefined>();
   useEffect(() => {
     if (val) setValue(val);
   }, [setValue, val]);
@@ -38,7 +39,7 @@ export default function RadioGroup({
                 className={classNames("radioGroup__button", {
                   chek: e.value === val,
                 })}
-                onClick={() => setVal(e.value)}
+                onClick={() => setVal(e.value as keyof typeof Roles)}
               />
               {e.name}
             </div>
