@@ -9,10 +9,12 @@ import {
 } from "redux/slices/report/actions";
 import { isAuthorized } from "redux/slices/user/selectors";
 import iconAdd from "@static/icon/add.svg";
-import { getReports } from "redux/slices/report/selectors";
+import { getFetchstatus, getReports } from "redux/slices/report/selectors";
 import ReportItem from "@components/ReportItem";
 import ReportList from "@components/ReportList";
 import { Report } from "redux/slices/report/slice";
+import { FetchStatus } from "redux/types";
+import Loading from "@components/commons/Loading";
 
 export default function Report() {
   const dispatch = useAppDispatch();
@@ -22,6 +24,8 @@ export default function Report() {
   const [component, setComponent] = useState<JSX.Element>();
 
   const reports = useAppSelector(getReports);
+
+  const fetchStatus = useAppSelector(getFetchstatus);
 
   const currentDay = Date.now();
   const d = new Date(currentDay);
@@ -34,6 +38,7 @@ export default function Report() {
     const dt = i.date.date.split(" ")[0];
     if (dt === d2) return i;
   });
+
 
   const handleCreateReport = () => {
     dispatch(fetchCreateReportAction());
@@ -66,6 +71,8 @@ export default function Report() {
         </IconButton>
       )}
 
+
+
       <div className="table-report">
         <div className="table-report__row header">
           <div className="table-report__item">Номер</div>
@@ -74,6 +81,10 @@ export default function Report() {
           <div className="table-report__item author">Автор</div>
           <div className="table-report__item">Кол-во</div>
         </div>
+
+        {fetchStatus === FetchStatus.Fetching && (
+        <Loading text="Загружаем список отчетов" />
+      )}
         {reports.map((e) => {
           return (
             <ReportItem

@@ -4,6 +4,7 @@ import { Report } from "redux/slices/report/slice";
 import { fetchReportItemsAction } from "redux/slices/reportItem/actions";
 import iconAdd from "@static/icon/add.svg";
 import {
+  getFetchstatus,
   getLoadReportId,
   getReportItems,
 } from "redux/slices/reportItem/selectors";
@@ -11,6 +12,8 @@ import Items from "./Items";
 import IconButton from "@components/commons/IconButton";
 import ReportItemForm from "@components/forms/ReportItemForm";
 import { getProfile } from "redux/slices/profile/selectors";
+import Loading from "@components/commons/Loading";
+import { FetchStatus } from "redux/types";
 
 type ReportListProps = {
   report: Report;
@@ -28,6 +31,8 @@ export default function ReportList({
 
   const loadReportId = useAppSelector(getLoadReportId);
 
+  const fetchStatus = useAppSelector(getFetchstatus);
+
   const list = useAppSelector(getReportItems);
   useEffect(() => {
     if (id !== loadReportId) dispatch(fetchReportItemsAction({ reportId: id }));
@@ -41,6 +46,9 @@ export default function ReportList({
           <div className="table-report-list__item address">Адресс точки</div>
           <div className="table-report-list__item">Сумма</div>
         </div>
+        {fetchStatus === FetchStatus.Fetching && (
+          <Loading text="Загружаем список точек" />
+        )}
         {list.map((e) => {
           return (
             <Items
