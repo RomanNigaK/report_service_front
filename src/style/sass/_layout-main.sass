@@ -1,0 +1,74 @@
+.layout-main
+    display: grid
+    grid-template-areas: "main-menu desktop"
+    grid-template-columns: 100px auto
+    height: 100vh
+
+
+    &__main-menu
+        grid-area: main-menu
+        text-align: center
+        display: flex
+        flex-direction: column
+        padding-top: 20px
+
+    &__item
+        height: 40px
+        display: flex
+        align-items: center
+        justify-content: center
+        background-position: center center
+        background-repeat: no-repeat
+        &.report
+             background-image: url("../../static/icon/report.svg")
+        &.reportactive
+             background-image: url("../../static/icon/report-black.svg")
+        &.employee
+             background-image: url("../../static/icon/group-user.svg")
+        &.employeeactive
+             background-image: url("../../static/icon/group-user-black.svg")
+        &.profile
+             background-image: url("../../static/icon/user.svg")
+        &.profileactive
+             background-image: url("../../static/icon/user-black.svg")         
+        &.option
+             background-image: url("../../static/icon/options.svg")
+        &.optionactive
+             background-image: url("../../static/icon/options-black.svg") 
+        &.logo
+            margin-bottom: 20px
+
+    &__main
+        height: 100hv
+        overflow-y: auto
+        padding-left: 20px
+                
+    &__main-header
+        height: 80px
+        padding-top: 10px
+        >div
+            display: flex
+            div
+                &:last-child
+                    margin-left: auto
+                    display: flex
+
+    span.title
+        display: block
+        font-size: 13px
+        color: $placeholder
+
+    &__main-content
+        overflow: auto
+        position: relative
+        height: calc(100% - 80px)
+        background: #FBFBFB
+        padding: 10px
+ 
+
+
+
+
+
+
+ 

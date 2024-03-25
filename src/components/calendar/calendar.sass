@@ -1,0 +1,72 @@
+.calendar
+    margin-top: 15px
+    &__years
+        display: flex
+        justify-content: flex-start
+        div
+            width: 50px
+            position: relative
+            cursor: pointer
+            color: #727272
+            &:hover
+                color: #000
+            &.current
+                text-decoration: underline
+
+
+    &__month
+        display: flex
+        justify-content: flex-start
+        margin-top: 10px
+
+        >div
+            height: 35px
+            line-height: 35px
+            padding: 0px 10px
+            color: #727272
+            cursor: pointer
+
+            &:hover
+                color: #000
+            &.current
+                border: 1px solid black
+
+    &__weekDay
+        display: flex
+        width: 1000px
+        flex-wrap: wrap
+        div
+            height: 40px
+            width: 130px
+            line-height: 40px
+            text-align: center
+            color: #727272
+            font-weight: 700
+            &:nth-child(7)
+                color: red
+            &:nth-child(6)
+                color: red 
+
+            
+    &__daynumber
+        display: flex
+        width: 1000px
+        flex-wrap: wrap
+        >div
+            height: 50px
+            width: 130px
+            line-height: 40px
+            text-align: center
+            color: #727272
+            &:nth-child(7)
+                color: red
+            &:nth-child(6)
+                color: red     
+                
+            &.day
+                color: #727272   
+                div
+                    margin-top: -20px
+                    font-size: 14px
+
+

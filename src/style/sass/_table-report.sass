@@ -1,0 +1,54 @@
+.table-report
+    &__row
+        display: flex
+        >div
+            width: 200px
+        &.header
+            >div
+                color: grey
+                font-size: 13px
+        
+        &:hover:not(.header)
+            >div
+                color: #5e4cfc
+                cursor: pointer
+                
+
+    &__item
+        &.author
+                width: 300px   
+
+
+.table-report-list
+    &__row
+        display: flex
+        >div
+            width: 200px
+        &.header
+            >div
+                color: grey
+                font-size: 13px
+        &.form
+            margin-bottom: 1px
+        &.error
+
+            div
+                font-size: 12px
+                color: red
+        &.loading
+            div
+                color: #8b8b8b
+        &:hover:not(.header,.error,.loading)
+            >div
+                color: #5e4cfc
+                cursor: pointer
+                
+
+    &__item
+        &.address
+                width: 100%
+        
+        input
+            background: #c4d7ff
+            width: 99%
+            height: 25px
