@@ -10,13 +10,17 @@ import { nanoid } from "@reduxjs/toolkit";
 import { NoticeTypes, Roles } from "constans/enums";
 import { getIsAdmin, isAuthorized } from "redux/slices/user/selectors";
 import CreateEmployeeForm from "@components/forms/CreateEmployeeForm";
-import { getEmployee } from "redux/slices/employee/selectors";
+import { getEmployee, getFetchStatus } from "redux/slices/employee/selectors";
+import Loading from "@components/commons/Loading";
+import { FetchStatus } from "redux/types";
 
 export default function Employee() {
   const dispatch = useAppDispatch();
   const [isVisbleModal, setIsVisibleModal] = useState(false);
 
   const authorized = useAppSelector(isAuthorized);
+
+  const fetchStatus = useAppSelector(getFetchStatus);
 
   const isAdmin = useAppSelector(getIsAdmin);
 
@@ -60,17 +64,22 @@ export default function Employee() {
           <div className="table-report__item">Права</div>
           <div className="table-report__item">Почта</div>
         </div>
-        {employee.map((e) => {
-          return (
-            <div className="table-report__row" key={e.id}>
-              <div className="table-report__item author">{`${e.sername} ${e.name} ${e.patronymic}`}</div>
-              <div className="table-report__item">
-                {e.role && Roles[e.role]}
+        {fetchStatus === FetchStatus.Fetching ? (
+          <Loading text="Загружаем список сотрудников" />
+        ) : (
+          employee.map((e) => {
+            return (
+              <div className="table-report__row" key={e.id}>
+                <div className="table-report__item author">{`${e.sername} ${e.name} ${e.patronymic}`}</div>
+                <div className="table-report__item">
+                  {e.role && Roles[e.role]}
+                </div>
+                <div className="table-report__item">{e.email}</div>
               </div>
-              <div className="table-report__item">{e.email}</div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
+        {}
       </div>
     </>
   );
