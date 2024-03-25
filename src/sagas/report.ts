@@ -27,7 +27,7 @@ const fetchReportsActionHandler = function* () {
 
 const fetchCreateReportActionHandle = function* () {
   try {
-    yield put(setStatus(FetchStatus.Fetching));
+
     const { data } = yield call(createReport);
 
     yield put(fetchCreateReportActionSuccess(data));
