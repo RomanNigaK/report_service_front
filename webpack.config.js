@@ -18,7 +18,7 @@ module.exports = {
       directory: path.join(__dirname, "dist"),
     },
     proxy: {
-      "/api": "http://46.8.19.222:8086/",
+      "/api": "http://localhost:8086/",
 
     },
     port: 9001,
