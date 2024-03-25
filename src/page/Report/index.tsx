@@ -39,7 +39,6 @@ export default function Report() {
     if (dt === d2) return i;
   });
 
-
   const handleCreateReport = () => {
     dispatch(fetchCreateReportAction());
   };
@@ -71,8 +70,6 @@ export default function Report() {
         </IconButton>
       )}
 
-
-
       <div className="table-report">
         <div className="table-report__row header">
           <div className="table-report__item">Номер</div>
@@ -82,18 +79,19 @@ export default function Report() {
           <div className="table-report__item">Кол-во</div>
         </div>
 
-        {fetchStatus === FetchStatus.Fetching && (
-        <Loading text="Загружаем список отчетов" />
-      )}
-        {reports.map((e) => {
-          return (
-            <ReportItem
-              openDetails={openReportListForm}
-              report={e}
-              key={e.id}
-            />
-          );
-        })}
+        {fetchStatus === FetchStatus.Fetching ? (
+          <Loading text="Загружаем список отчетов" />
+        ) : (
+          reports.map((e) => {
+            return (
+              <ReportItem
+                openDetails={openReportListForm}
+                report={e}
+                key={e.id}
+              />
+            );
+          })
+        )}
       </div>
     </>
   );

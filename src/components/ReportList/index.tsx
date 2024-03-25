@@ -46,10 +46,9 @@ export default function ReportList({
           <div className="table-report-list__item address">Адресс точки</div>
           <div className="table-report-list__item">Сумма</div>
         </div>
-        {fetchStatus === FetchStatus.Fetching && (
+        {fetchStatus === FetchStatus.Fetching ? (
           <Loading text="Загружаем список точек" />
-        )}
-        {list.map((e) => {
+        ):list.map((e) => {
           return (
             <Items
               item={e}
@@ -60,6 +59,7 @@ export default function ReportList({
             />
           );
         })}
+        
       </div>
       {isAddItem && (
         <ReportItemForm onClose={() => setIsAddItem(false)} reportId={id} />
